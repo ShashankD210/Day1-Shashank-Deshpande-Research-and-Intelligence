@@ -1,0 +1,52 @@
+name: Validate CTI & Detection Artifacts
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Validate YAML and JSON syntax
+        run: |
+          python3 -c '
+          import glob, json, yaml
+          for path in glob.glob("detections/sigma/*.yml") + glob.glob("detections/sigma/*.yaml"):
+              with open(path, encoding="utf-8") as f:
+                  yaml.safe_load(f)
+          for path in glob.glob("playbooks/*.json"):
+              with open(path, encoding="utf-8") as f:
+                  json.load(f)
+          print("YAML and JSON files validated.")
+          '
+
+      - name: Validate YARA rules with yara-python
+        run: |
+          pip install yara-python
+          python3 -c '
+          import glob, yara
+          for path in glob.glob("detections/yara/*.yar"):
+              yara.compile(filepath=path)
+          print("YARA rules compiled successfully.")
+          '
+
+      - name: Verify Markdown files exist and are non-empty
+        run: |
+          python3 -c '
+          import glob, os
+          md_files = ["README.md"] + glob.glob("briefs/*.md") + glob.glob("detections/hunting/*.md") + glob.glob("playbooks/*.md") + glob.glob("awareness/*.md")
+          for p in md_files:
+              assert os.path.isfile(p) and os.path.getsize(p) > 0, f"Missing or empty: {p}"
+          print(f"Verified {len(md_files)} Markdown files.")
+          '

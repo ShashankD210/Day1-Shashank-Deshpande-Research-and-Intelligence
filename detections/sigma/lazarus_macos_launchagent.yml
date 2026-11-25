@@ -1,0 +1,31 @@
+title: Lazarus Group macOS LaunchAgent Persistence
+id: 3a7f1c2e-4b5d-4e8f-9a2b-6c1d3e5f7a8b
+status: experimental
+description: Detects creation or modification of LaunchAgent or LaunchDaemon plist files associated with Lazarus Group persistence on macOS endpoints.
+author: GreySentinel CTI Team
+date: 2026-01-15
+references:
+  - https://attack.mitre.org/techniques/T1543/001/
+  - https://github.com/GreySentinel/cti-threat-intelligence-portfolio
+tags:
+  - attack.persistence
+  - attack.t1543.001
+  - macos
+  - lazarus
+logsource:
+  category: file_event
+  product: macos
+detection:
+  selection:
+    TargetFilename|endswith: '.plist'
+    TargetFilename|contains:
+      - '/Library/LaunchAgents/'
+      - '/Library/LaunchDaemons/'
+      - '~/Library/LaunchAgents/'
+      - '/System/Library/LaunchAgents/'
+      - '/System/Library/LaunchDaemons/'
+  condition: selection
+falsepositives:
+  - Legitimate software installation or updates
+  - Administrator-created LaunchAgents for management tools
+level: high

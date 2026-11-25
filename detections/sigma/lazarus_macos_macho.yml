@@ -1,0 +1,36 @@
+title: Lazarus Group Suspicious Mach-O Execution
+id: 5b9d2e3f-6c7a-4f9e-8b1d-2c3a4e5f6b7c
+status: experimental
+description: Detects execution of Mach-O binaries from non-standard paths commonly used by Lazarus Group cross-platform implants on macOS.
+author: GreySentinel CTI Team
+date: 2026-01-15
+references:
+  - https://attack.mitre.org/techniques/T1204/002/
+  - https://attack.mitre.org/techniques/T1105/
+  - https://github.com/GreySentinel/cti-threat-intelligence-portfolio
+tags:
+  - attack.execution
+  - attack.t1204.002
+  - attack.t1105
+  - macos
+  - lazarus
+logsource:
+  category: process_creation
+  product: macos
+detection:
+  selection:
+    Image|endswith:
+      - '.app'
+      - '.dylib'
+      - '.bundle'
+    Image|contains:
+      - '/tmp/'
+      - '/var/tmp/'
+      - '/Users/Shared/'
+      - '~/Library/Application Support/'
+      - '/Library/Application Support/'
+  condition: selection
+falsepositives:
+  - Legitimate applications executing from temporary directories
+  - Developer tools and build artifacts
+level: medium

@@ -1,0 +1,202 @@
+{
+  "title": "APT29 Defense Checklist",
+  "version": "1.0",
+  "lastUpdated": "2026-01-15",
+  "owner": "GreySentinel CTI Team",
+  "tlp": "CLEAR",
+  "threatActor": "APT29 (Cozy Bear, Midnight Blizzard, Nobelium)",
+  "attribution": "Russian Foreign Intelligence Service (SVR)",
+  "categories": [
+    {
+      "name": "Identity & Authentication",
+      "items": [
+        {
+          "id": "ID-01",
+          "control": "Enforce phishing-resistant MFA (FIDO2/WebAuthn) for all users",
+          "priority": "Critical",
+          "status": "Not Implemented",
+          "references": ["T1528", "T1566"]
+        },
+        {
+          "id": "ID-02",
+          "control": "Restrict OAuth device code flows and user app consent",
+          "priority": "Critical",
+          "status": "Not Implemented",
+          "references": ["T1528", "T1098.003"]
+        },
+        {
+          "id": "ID-03",
+          "control": "Review and audit all OAuth application consents monthly",
+          "priority": "High",
+          "status": "Not Implemented",
+          "references": ["T1098.003"]
+        },
+        {
+          "id": "ID-04",
+          "control": "Require admin consent for high-privilege application permissions",
+          "priority": "High",
+          "status": "Not Implemented",
+          "references": ["T1098.003"]
+        },
+        {
+          "id": "ID-05",
+          "control": "Monitor sign-in logs for residential proxy ASNs and unusual OAuth grants",
+          "priority": "High",
+          "status": "Not Implemented",
+          "references": ["T1090.002"]
+        }
+      ]
+    },
+    {
+      "name": "Endpoint & Mobile",
+      "items": [
+        {
+          "id": "EP-01",
+          "control": "Keep OS and browser versions patched on mobile and desktop endpoints",
+          "priority": "Critical",
+          "status": "Not Implemented",
+          "references": ["T1189", "T1203"]
+        },
+        {
+          "id": "EP-02",
+          "control": "Apply strict network and identity segmentation",
+          "priority": "High",
+          "status": "Not Implemented",
+          "references": ["T1021"]
+        },
+        {
+          "id": "EP-03",
+          "control": "Enable endpoint detection and response (EDR) on all endpoints",
+          "priority": "High",
+          "status": "Not Implemented",
+          "references": ["T1055", "T1070"]
+        },
+        {
+          "id": "EP-04",
+          "control": "Block or restrict DLL side-loading via application control",
+          "priority": "Medium",
+          "status": "Not Implemented",
+          "references": ["T1574.002"]
+        },
+        {
+          "id": "EP-05",
+          "control": "Monitor for in-memory execution without disk persistence",
+          "priority": "Medium",
+          "status": "Not Implemented",
+          "references": ["T1055"]
+        }
+      ]
+    },
+    {
+      "name": "Cloud & Infrastructure",
+      "items": [
+        {
+          "id": "CL-01",
+          "control": "Audit OAuth consents and monitor identity and endpoint telemetry",
+          "priority": "Critical",
+          "status": "Not Implemented",
+          "references": ["T1098.003", "T1114"]
+        },
+        {
+          "id": "CL-02",
+          "control": "Restrict access to legacy authentication protocols",
+          "priority": "High",
+          "status": "Not Implemented",
+          "references": ["T1078"]
+        },
+        {
+          "id": "CL-03",
+          "control": "Implement conditional access policies based on device compliance and location",
+          "priority": "High",
+          "status": "Not Implemented",
+          "references": ["T1078"]
+        },
+        {
+          "id": "CL-04",
+          "control": "Correlate login anomalies with network context and review log integrity",
+          "priority": "High",
+          "status": "Not Implemented",
+          "references": ["T1070"]
+        },
+        {
+          "id": "CL-05",
+          "control": "Monitor abuse of legitimate cloud APIs for C2 and data exfiltration",
+          "priority": "Medium",
+          "status": "Not Implemented",
+          "references": ["T1102", "T1114"]
+        }
+      ]
+    },
+    {
+      "name": "Threat Hunting",
+      "items": [
+        {
+          "id": "TH-01",
+          "control": "Deploy behavioral hunting for deviceCode authentication events",
+          "priority": "High",
+          "status": "Not Implemented",
+          "references": ["T1528"]
+        },
+        {
+          "id": "TH-02",
+          "control": "Hunt for residential proxy logins and anomalous geo-location sign-ins",
+          "priority": "High",
+          "status": "Not Implemented",
+          "references": ["T1090.002"]
+        },
+        {
+          "id": "TH-03",
+          "control": "Hunt for malicious OAuth application registration and consent grants",
+          "priority": "High",
+          "status": "Not Implemented",
+          "references": ["T1098.003"]
+        },
+        {
+          "id": "TH-04",
+          "control": "Hunt for memory-resident loaders and in-memory execution",
+          "priority": "Medium",
+          "status": "Not Implemented",
+          "references": ["T1055"]
+        },
+        {
+          "id": "TH-05",
+          "control": "Hunt for cloud API abuse and session cookie theft",
+          "priority": "Medium",
+          "status": "Not Implemented",
+          "references": ["T1102", "T1539"]
+        }
+      ]
+    },
+    {
+      "name": "Incident Response",
+      "items": [
+        {
+          "id": "IR-01",
+          "control": "Maintain OAuth token revocation SOP for Entra ID / M365 compromise",
+          "priority": "Critical",
+          "status": "Not Implemented",
+          "references": ["T1528", "T1539"]
+        },
+        {
+          "id": "IR-02",
+          "control": "Establish 24/7 SOC coverage for identity and cloud telemetry",
+          "priority": "High",
+          "status": "Not Implemented",
+          "references": ["T1078"]
+        },
+        {
+          "id": "IR-03",
+          "control": "Conduct quarterly tabletop exercises for APT29-style cloud intrusion",
+          "priority": "Medium",
+          "status": "Not Implemented",
+          "references": ["T1528", "T1195"]
+        }
+      ]
+    }
+  ],
+  "mitreTechniques": [
+    "T1189", "T1203", "T1528", "T1566", "T1195",
+    "T1098.003", "T1090.002", "T1070", "T1055",
+    "T1574.002", "T1021", "T1078", "T1102", "T1114", "T1539"
+  ]
+}

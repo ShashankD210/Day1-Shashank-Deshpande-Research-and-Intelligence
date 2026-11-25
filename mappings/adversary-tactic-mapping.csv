@@ -1,0 +1,10 @@
+Threat_Actor,Tactic_Category,Behavioral_Summary,Primary_Control
+APT29,Initial Access,Phishing and supply-chain or web exploitation,"Enforce phishing-resistant MFA, restrict OAuth flows, and patch edge/mobile apps"
+APT29,Persistence,Cloud identity abuse and host persistence,Audit OAuth consents and monitor identity and endpoint telemetry
+APT29,Defense Evasion,Proxy routing and artifact obfuscation,Correlate login anomalies with network context and review log integrity
+Volt Typhoon,Initial Access,Public-facing application exploitation,Patch internet-facing appliances rapidly and isolate management access
+Volt Typhoon,Credential Access,Native administrative credential extraction,Baseline administrative tooling and protect high-privilege identity stores
+Volt Typhoon,Defense Evasion,Living off the land and router relays,Alert on anomalous built-in tool usage and harden edge/SOHO infrastructure
+Lazarus Group,Initial Access,Social engineering and software supply chain,Isolate untrusted code/lures and vet third-party packages
+Lazarus Group,Persistence,OS startup and scheduled mechanisms,Enforce endpoint allowlisting and monitor startup/service changes
+Lazarus Group,Impact,Financial theft and asset disruption,Use hardware-backed approvals and segment sensitive financial/signing systems
