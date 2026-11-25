@@ -1,0 +1,36 @@
+title: Lazarus Group Supply Chain Malicious Package
+id: 6a7b8c9d-0e1f-4a2b-3c4d-5e6f7a8b9c0d
+status: experimental
+description: Detects execution patterns associated with malicious npm/PyPI packages used in Lazarus Group supply chain attacks.
+author: GreySentinel CTI Team
+date: 2026-01-20
+references:
+  - https://attack.mitre.org/techniques/T1195/001/
+  - https://github.com/GreySentinel/cti-threat-intelligence-portfolio
+tags:
+  - attack.initial_access
+  - attack.t1195.001
+  - supply_chain
+  - lazarus
+logsource:
+  category: process_creation
+  product: windows
+detection:
+  selection:
+    Image|endswith:
+      - 'node.exe'
+      - 'python.exe'
+      - 'pip.exe'
+      - 'npm.exe'
+    CommandLine|contains:
+      - 'postinstall'
+      - 'setup.py'
+      - 'execSync'
+      - 'child_process'
+      - 'os.system'
+      - 'subprocess'
+  condition: selection
+falsepositives:
+  - Legitimate package installation
+  - Development tooling
+level: medium

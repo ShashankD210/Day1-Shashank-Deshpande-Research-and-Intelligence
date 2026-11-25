@@ -1,0 +1,32 @@
+title: Volt Typhoon SOHO Router Relay Connection
+id: 3e4f5a6b-7c8d-4e9f-0a1b-2c3d4e5f6a7b
+status: experimental
+description: Detects connections to known compromised SOHO routers used by Volt Typhoon for C2 relaying.
+author: GreySentinel CTI Team
+date: 2026-01-20
+references:
+  - https://attack.mitre.org/techniques/T1090/
+  - https://github.com/GreySentinel/cti-threat-intelligence-portfolio
+tags:
+  - attack.command_and_control
+  - attack.t1090
+  - lotl
+  - volt_typhoon
+logsource:
+  category: network_connection
+  product: windows
+detection:
+  selection:
+    DestinationPort|in:
+      - 443
+      - 8443
+      - 8080
+      - 22
+    DestinationIp|in:
+      - '192.0.2.0/24'
+      - '198.51.100.0/24'
+      - '203.0.113.0/24'
+  condition: selection
+falsepositives:
+  - Legitimate connections to infrastructure in test ranges
+level: medium

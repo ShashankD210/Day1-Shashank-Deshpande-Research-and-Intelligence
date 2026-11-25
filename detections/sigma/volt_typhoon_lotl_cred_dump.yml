@@ -1,0 +1,36 @@
+title: Volt Typhoon Living-off-the-Land Credential Dumping
+id: 1a2b3c4d-5e6f-4a7b-8c9d-0e1f2a3b4c5d
+status: experimental
+description: Detects Volt Typhoon-style Living-off-the-Land credential dumping using ntdsutil.exe, vssadmin.exe, and related native tools.
+author: GreySentinel CTI Team
+date: 2026-01-20
+references:
+  - https://attack.mitre.org/techniques/T1003/003/
+  - https://attack.mitre.org/techniques/T1003/
+  - https://github.com/GreySentinel/cti-threat-intelligence-portfolio
+tags:
+  - attack.credential_access
+  - attack.t1003.003
+  - lotl
+  - volt_typhoon
+logsource:
+  category: process_creation
+  product: windows
+detection:
+  selection:
+    Image|endswith:
+      - 'ntdsutil.exe'
+      - 'vssadmin.exe'
+      - 'wmic.exe'
+      - 'netsh.exe'
+      - 'nltest.exe'
+    CommandLine|contains:
+      - 'ifm'
+      - 'create full'
+      - 'ds rm'
+      - 'authoritative restore'
+  condition: selection
+falsepositives:
+  - Legitimate Active Directory administration
+  - Backup operations using vssadmin
+level: high

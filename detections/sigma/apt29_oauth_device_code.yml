@@ -1,0 +1,29 @@
+title: APT29 OAuth Device Code Phishing Detection
+id: 7c2e4f1a-8b3d-4e5f-9a6c-2d1b3e4f5a6c
+status: experimental
+description: Detects potential APT29 OAuth device code phishing activity by identifying device code authentication events from unusual sources or followed by suspicious app consent.
+author: GreySentinel CTI Team
+date: 2026-01-20
+references:
+  - https://attack.mitre.org/techniques/T1528/
+  - https://attack.mitre.org/techniques/T1098/003/
+  - https://github.com/GreySentinel/cti-threat-intelligence-portfolio
+tags:
+  - attack.initial_access
+  - attack.t1528
+  - attack.t1098.003
+  - oauth
+  - apt29
+logsource:
+  category: authentication
+  product: azure_ad
+detection:
+  selection:
+    AuthenticationDetails|contains: 'deviceCode'
+    ResultType|equals: '0'
+  timeframe: 5m
+  condition: selection
+falsepositives:
+  - Legitimate device code usage for device onboarding
+  - IT-administered device code authentication
+level: high

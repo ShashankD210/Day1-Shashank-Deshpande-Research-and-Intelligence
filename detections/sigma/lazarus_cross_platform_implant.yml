@@ -1,0 +1,36 @@
+title: Lazarus Group Cross-Platform Implant Execution
+id: 5f6a7b8c-9d0e-4f1a-2b3c-4d5e6f7a8b9c
+status: experimental
+description: Detects execution of Lazarus Group cross-platform implants via suspicious process spawns from scripting interpreters.
+author: GreySentinel CTI Team
+date: 2026-01-20
+references:
+  - https://attack.mitre.org/techniques/T1204/002/
+  - https://attack.mitre.org/techniques/T1105/
+  - https://github.com/GreySentinel/cti-threat-intelligence-portfolio
+tags:
+  - attack.execution
+  - attack.t1204.002
+  - attack.t1105
+  - lazarus
+logsource:
+  category: process_creation
+  product: windows
+detection:
+  selection_parent:
+    ParentImage|endswith:
+      - 'node.exe'
+      - 'python.exe'
+      - 'pythonw.exe'
+      - 'npm.exe'
+      - 'pip.exe'
+  selection_child:
+    Image|endswith:
+      - '.exe'
+      - '.dll'
+      - '.ps1'
+  condition: selection_parent and selection_child
+falsepositives:
+  - Legitimate development tooling
+  - Build automation scripts
+level: medium

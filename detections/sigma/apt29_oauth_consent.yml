@@ -1,0 +1,27 @@
+title: APT29 Malicious OAuth Application Consent
+id: 9d8e3f2a-4b5c-4d6e-7f8a-1c2b3d4e5f6a
+status: experimental
+description: Detects OAuth application consent grants to newly registered or suspicious applications, consistent with APT29 cloud identity abuse.
+author: GreySentinel CTI Team
+date: 2026-01-20
+references:
+  - https://attack.mitre.org/techniques/T1098/003/
+  - https://github.com/GreySentinel/cti-threat-intelligence-portfolio
+tags:
+  - attack.persistence
+  - attack.t1098.003
+  - oauth
+  - apt29
+logsource:
+  category: web_application
+  product: azure_ad
+detection:
+  selection:
+    OperationName|contains: 'Consent to application'
+    ResultType|equals: 'Success'
+  timeframe: 1h
+  condition: selection
+falsepositives:
+  - Legitimate user-initiated app consent
+  - Approved SaaS application onboarding
+level: medium

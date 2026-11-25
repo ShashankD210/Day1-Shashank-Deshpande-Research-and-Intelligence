@@ -1,0 +1,43 @@
+{
+  "tlp": "CLEAR",
+  "version": "1.0",
+  "lastUpdated": "2026-01-20",
+  "threatActor": "Volt Typhoon",
+  "aliases": ["Bronze Silhouette", "Vanguard Panda", "Insidious Taurus"],
+  "attribution": "People's Republic of China (PRC) State-Sponsored",
+  "confidence": "High",
+  "iocs": {
+    "domains": [
+      "update-vpn.example",
+      "router-config.net",
+      "edge-device-update.com",
+      "soho-router-mgmt.net",
+      "firewall-patch.example"
+    ],
+    "ipAddresses": [
+      "198.51.100.0/24",
+      "203.0.113.0/24",
+      "192.0.2.0/24"
+    ],
+    "urls": [
+      "https://update-vpn.example/admin",
+      "https://router-config.net/config",
+      "https://edge-device-update.com/firmware"
+    ],
+    "fileHashes": {
+      "sha256": []
+    },
+    "tools": [
+      "wmic.exe",
+      "powershell.exe",
+      "netsh.exe",
+      "nltest.exe",
+      "ntdsutil.exe",
+      "vssadmin.exe"
+    ],
+    "mitreTechniques": [
+      "T1190", "T1003.003", "T1003", "T1090",
+      "T1021", "T1078", "T1562"
+    ]
+  }
+}

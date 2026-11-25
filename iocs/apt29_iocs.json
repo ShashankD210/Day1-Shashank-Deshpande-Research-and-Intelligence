@@ -1,0 +1,41 @@
+{
+  "tlp": "CLEAR",
+  "version": "1.0",
+  "lastUpdated": "2026-01-20",
+  "threatActor": "APT29",
+  "aliases": ["Cozy Bear", "Midnight Blizzard", "The Dukes", "Nobelium", "Storm-2945"],
+  "attribution": "Russian Foreign Intelligence Service (SVR)",
+  "confidence": "High",
+  "iocs": {
+    "domains": [
+      "microsoft.com.devicelogin.example",
+      "login-azure.net",
+      "office365-update.com",
+      "outlook-web-access.net",
+      "windows-update-security.com"
+    ],
+    "ipAddresses": [
+      "185.220.101.0/24",
+      "193.109.222.0/24",
+      "91.219.206.0/24",
+      "45.142.213.0/24"
+    ],
+    "urls": [
+      "https://login.microsoftonline.com/oauth2/v2.0/devicecode",
+      "https://graph.microsoft.com/v1.0/me",
+      "https://outlook.office365.com/owa"
+    ],
+    "fileHashes": {
+      "sha256": []
+    },
+    "registryKeys": [
+      "HKCU\\Software\\Microsoft\\Windows\\CurrentVersion\\Run\\OAuthUpdate",
+      "HKLM\\Software\\Microsoft\\Windows\\CurrentVersion\\Run\\CloudSync"
+    ],
+    "mitreTechniques": [
+      "T1189", "T1203", "T1528", "T1566", "T1195",
+      "T1098.003", "T1090.002", "T1070", "T1055",
+      "T1574.002", "T1021", "T1078", "T1102", "T1114", "T1539"
+    ]
+  }
+}
