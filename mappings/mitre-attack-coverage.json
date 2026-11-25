@@ -1,0 +1,240 @@
+{
+  "name": "GreySentinel CTI Portfolio ATT&CK Coverage",
+  "version": "1.0",
+  "lastUpdated": "2026-01-20",
+  "description": "MITRE ATT&CK technique coverage across detection rules, hunting queries, and playbooks for APT29, Volt Typhoon, and Lazarus Group",
+  "domains": [
+    "enterprise-attack"
+  ],
+  "coverage": [
+    {
+      "techniqueID": "T1189",
+      "techniqueName": "Drive-by Compromise",
+      "actors": ["APT29"],
+      "detection": ["detections/yara/extended_threat_rules.yar"],
+      "hunting": ["detections/hunting/threat-hunting-queries.md"],
+      "coverage": "Partial"
+    },
+    {
+      "techniqueID": "T1203",
+      "techniqueName": "Exploitation for Client Execution",
+      "actors": ["APT29"],
+      "detection": ["detections/yara/apt29_lazarus_loaders.yar"],
+      "hunting": ["detections/hunting/threat-hunting-queries.md"],
+      "coverage": "Partial"
+    },
+    {
+      "techniqueID": "T1528",
+      "techniqueName": "Multi-Factor Authentication Interception",
+      "actors": ["APT29"],
+      "detection": ["detections/sigma/apt29_oauth_device_code.yml"],
+      "hunting": ["detections/hunting/threat-hunting-queries.md"],
+      "playbook": ["playbooks/oauth-token-compromise-sop.md"],
+      "coverage": "Full"
+    },
+    {
+      "techniqueID": "T1566",
+      "techniqueName": "Phishing",
+      "actors": ["APT29", "Lazarus Group"],
+      "detection": [],
+      "awareness": ["awareness/targeted-phishing-advisory.md"],
+      "coverage": "Partial"
+    },
+    {
+      "techniqueID": "T1566.003",
+      "techniqueName": "Spearphishing Attachment",
+      "actors": ["Lazarus Group"],
+      "detection": ["detections/sigma/lazarus_supply_chain_package.yml"],
+      "awareness": ["awareness/targeted-phishing-advisory.md"],
+      "coverage": "Partial"
+    },
+    {
+      "techniqueID": "T1195",
+      "techniqueName": "Supply Chain Compromise",
+      "actors": ["APT29", "Lazarus Group"],
+      "detection": ["detections/yara/apt29_lazarus_loaders.yar"],
+      "coverage": "Partial"
+    },
+    {
+      "techniqueID": "T1195.001",
+      "techniqueName": "Supply Chain Compromise: Compromise Software Dependencies",
+      "actors": ["Lazarus Group"],
+      "detection": ["detections/sigma/lazarus_supply_chain_package.yml", "detections/yara/extended_threat_rules.yar"],
+      "coverage": "Full"
+    },
+    {
+      "techniqueID": "T1098.003",
+      "techniqueName": "Account Manipulation: OAuth Application",
+      "actors": ["APT29"],
+      "detection": ["detections/sigma/apt29_oauth_consent.yml"],
+      "hunting": ["detections/hunting/threat-hunting-queries.md"],
+      "playbook": ["playbooks/oauth-token-compromise-sop.md"],
+      "coverage": "Full"
+    },
+    {
+      "techniqueID": "T1090.002",
+      "techniqueName": "Proxy: External Proxy",
+      "actors": ["APT29"],
+      "detection": [],
+      "hunting": ["detections/hunting/threat-hunting-queries.md"],
+      "coverage": "Partial"
+    },
+    {
+      "techniqueID": "T1070",
+      "techniqueName": "Indicator Removal on Host",
+      "actors": ["APT29"],
+      "detection": [],
+      "coverage": "None"
+    },
+    {
+      "techniqueID": "T1055",
+      "techniqueName": "Process Injection",
+      "actors": ["APT29"],
+      "detection": ["detections/yara/apt29_lazarus_loaders.yar", "detections/yara/extended_threat_rules.yar"],
+      "coverage": "Partial"
+    },
+    {
+      "techniqueID": "T1574.002",
+      "techniqueName": "Hijack Execution Flow: DLL Side-Loading",
+      "actors": ["APT29"],
+      "detection": [],
+      "coverage": "None"
+    },
+    {
+      "techniqueID": "T1021",
+      "techniqueName": "Remote Services",
+      "actors": ["APT29", "Volt Typhoon"],
+      "detection": ["detections/hunting/threat-hunting-queries.md"],
+      "coverage": "Partial"
+    },
+    {
+      "techniqueID": "T1078",
+      "techniqueName": "Valid Accounts",
+      "actors": ["APT29", "Volt Typhoon"],
+      "detection": [],
+      "coverage": "None"
+    },
+    {
+      "techniqueID": "T1102",
+      "techniqueName": "In-browser Session Hijacking",
+      "actors": ["APT29"],
+      "detection": ["detections/yara/extended_threat_rules.yar"],
+      "coverage": "Partial"
+    },
+    {
+      "techniqueID": "T1114",
+      "techniqueName": "Email Collection",
+      "actors": ["APT29"],
+      "detection": [],
+      "coverage": "None"
+    },
+    {
+      "techniqueID": "T1539",
+      "techniqueName": "Steal Web Session Cookie",
+      "actors": ["APT29"],
+      "detection": [],
+      "coverage": "None"
+    },
+    {
+      "techniqueID": "T1190",
+      "techniqueName": "Exploit Public-Facing Application",
+      "actors": ["Volt Typhoon"],
+      "detection": [],
+      "coverage": "None"
+    },
+    {
+      "techniqueID": "T1003.003",
+      "techniqueName": "OS Credential Dumping: NTDS",
+      "actors": ["Volt Typhoon"],
+      "detection": ["detections/sigma/volt_typhoon_lotl_cred_dump.yml", "detections/yara/extended_threat_rules.yar"],
+      "hunting": ["detections/hunting/threat-hunting-queries.md"],
+      "coverage": "Full"
+    },
+    {
+      "techniqueID": "T1003",
+      "techniqueName": "OS Credential Dumping",
+      "actors": ["Volt Typhoon"],
+      "detection": ["detections/sigma/volt_typhoon_lotl_cred_dump.yml"],
+      "coverage": "Partial"
+    },
+    {
+      "techniqueID": "T1090",
+      "techniqueName": "Proxy",
+      "actors": ["Volt Typhoon"],
+      "detection": ["detections/sigma/volt_typhoon_soho_relay.yml", "detections/yara/extended_threat_rules.yar"],
+      "hunting": ["detections/hunting/threat-hunting-queries.md"],
+      "coverage": "Full"
+    },
+    {
+      "techniqueID": "T1562",
+      "techniqueName": "Impair Defenses",
+      "actors": ["Volt Typhoon"],
+      "detection": [],
+      "coverage": "None"
+    },
+    {
+      "techniqueID": "T1543.001",
+      "techniqueName": "Create or Modify System Process: Launch Agent",
+      "actors": ["Lazarus Group"],
+      "detection": ["detections/sigma/lazarus_macos_launchagent.yml"],
+      "hunting": ["detections/hunting/threat-hunting-queries.md"],
+      "coverage": "Full"
+    },
+    {
+      "techniqueID": "T1053",
+      "techniqueName": "Scheduled Task/Job",
+      "actors": ["Lazarus Group"],
+      "detection": [],
+      "coverage": "None"
+    },
+    {
+      "techniqueID": "T1553.002",
+      "techniqueName": "Subvert Trust Controls: Code Signing",
+      "actors": ["Lazarus Group"],
+      "detection": [],
+      "coverage": "None"
+    },
+    {
+      "techniqueID": "T1068",
+      "techniqueName": "Exploitation for Privilege Escalation",
+      "actors": ["Lazarus Group"],
+      "detection": [],
+      "coverage": "None"
+    },
+    {
+      "techniqueID": "T1657",
+      "techniqueName": "Financial Theft",
+      "actors": ["Lazarus Group"],
+      "detection": [],
+      "coverage": "None"
+    },
+    {
+      "techniqueID": "T1105",
+      "techniqueName": "Ingress Tool Transfer",
+      "actors": ["Lazarus Group"],
+      "detection": ["detections/sigma/lazarus_cross_platform_implant.yml", "detections/yara/extended_threat_rules.yar"],
+      "coverage": "Partial"
+    },
+    {
+      "techniqueID": "T1204.002",
+      "techniqueName": "User Execution: Malicious File",
+      "actors": ["Lazarus Group"],
+      "detection": ["detections/sigma/lazarus_cross_platform_implant.yml"],
+      "coverage": "Partial"
+    },
+    {
+      "techniqueID": "T1543",
+      "techniqueName": "Create or Modify System Process",
+      "actors": ["Lazarus Group"],
+      "detection": ["detections/sigma/lazarus_macos_launchagent.yml"],
+      "coverage": "Partial"
+    }
+  ],
+  "summary": {
+    "totalTechniques": 28,
+    "fullCoverage": 5,
+    "partialCoverage": 12,
+    "noCoverage": 11,
+    "coveragePercentage": "61%"
+  }
+}

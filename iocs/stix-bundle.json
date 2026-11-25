@@ -1,0 +1,147 @@
+{
+  "type": "bundle",
+  "id": "bundle--greysentinel-cti-portfolio-2026",
+  "spec_version": "2.0",
+  "name": "GreySentinel CTI Portfolio IOC Bundle",
+  "version": "1.0",
+  "created": "2026-01-20T00:00:00.000Z",
+  "modified": "2026-01-20T00:00:00.000Z",
+  "description": "STIX 2.1 bundle of indicators of compromise for APT29, Volt Typhoon, and Lazarus Group from the GreySentinel CTI Portfolio",
+  "objects": [
+    {
+      "type": "indicator",
+      "spec_version": "2.1",
+      "id": "indicator--apt29-device-code-domain-001",
+      "created": "2026-01-20T00:00:00.000Z",
+      "modified": "2026-01-20T00:00:00.000Z",
+      "name": "APT29 Device Code Phishing Domain",
+      "description": "Domain used in APT29 OAuth device code phishing campaigns",
+      "pattern": "[domain-name:value = 'microsoft.com.devicelogin.example']",
+      "pattern_type": "stix",
+      "valid_from": "2026-01-20T00:00:00.000Z",
+      "labels": ["malicious-activity"],
+      "threat_actor_names": ["APT29"],
+      "kill_chain_phases": [
+        {
+          "kill_chain_name": "mitre-attack",
+          "phase_name": "initial-access"
+        }
+      ],
+      "external_references": [
+        {
+          "source_name": "mitre-attack",
+          "external_id": "T1528",
+          "url": "https://attack.mitre.org/techniques/T1528/"
+        }
+      ]
+    },
+    {
+      "type": "indicator",
+      "spec_version": "2.1",
+      "id": "indicator--apt29-residential-proxy-001",
+      "created": "2026-01-20T00:00:00.000Z",
+      "modified": "2026-01-20T00:00:00.000Z",
+      "name": "APT29 Residential Proxy IP Range",
+      "description": "Residential ISP IP range used by APT29 for C2 proxying",
+      "pattern": "[ipv4-net:value = '185.220.101.0/24']",
+      "pattern_type": "stix",
+      "valid_from": "2026-01-20T00:00:00.000Z",
+      "labels": ["malicious-activity"],
+      "threat_actor_names": ["APT29"],
+      "kill_chain_phases": [
+        {
+          "kill_chain_name": "mitre-attack",
+          "phase_name": "command-and-control"
+        }
+      ],
+      "external_references": [
+        {
+          "source_name": "mitre-attack",
+          "external_id": "T1090.002",
+          "url": "https://attack.mitre.org/techniques/T1090/002/"
+        }
+      ]
+    },
+    {
+      "type": "indicator",
+      "spec_version": "2.1",
+      "id": "indicator--volt-typhoon-edge-domain-001",
+      "created": "2026-01-20T00:00:00.000Z",
+      "modified": "2026-01-20T00:00:00.000Z",
+      "name": "Volt Typhoon Edge Device Update Domain",
+      "description": "Domain used by Volt Typhoon for edge device exploitation",
+      "pattern": "[domain-name:value = 'update-vpn.example']",
+      "pattern_type": "stix",
+      "valid_from": "2026-01-20T00:00:00.000Z",
+      "labels": ["malicious-activity"],
+      "threat_actor_names": ["Volt Typhoon"],
+      "kill_chain_phases": [
+        {
+          "kill_chain_name": "mitre-attack",
+          "phase_name": "initial-access"
+        }
+      ],
+      "external_references": [
+        {
+          "source_name": "mitre-attack",
+          "external_id": "T1190",
+          "url": "https://attack.mitre.org/techniques/T1190/"
+        }
+      ]
+    },
+    {
+      "type": "indicator",
+      "spec_version": "2.1",
+      "id": "indicator--lazarus-recruiter-domain-001",
+      "created": "2026-01-20T00:00:00.000Z",
+      "modified": "2026-01-20T00:00:00.000Z",
+      "name": "Lazarus Group Fake Recruiter Domain",
+      "description": "Domain used by Lazarus Group for fake recruiter lures",
+      "pattern": "[domain-name:value = 'recruiter-crypto.example']",
+      "pattern_type": "stix",
+      "valid_from": "2026-01-20T00:00:00.000Z",
+      "labels": ["malicious-activity"],
+      "threat_actor_names": ["Lazarus Group"],
+      "kill_chain_phases": [
+        {
+          "kill_chain_name": "mitre-attack",
+          "phase_name": "initial-access"
+        }
+      ],
+      "external_references": [
+        {
+          "source_name": "mitre-attack",
+          "external_id": "T1566.003",
+          "url": "https://attack.mitre.org/techniques/T1566/003/"
+        }
+      ]
+    },
+    {
+      "type": "indicator",
+      "spec_version": "2.1",
+      "id": "indicator--lazarus-npm-mirror-001",
+      "created": "2026-01-20T00:00:00.000Z",
+      "modified": "2026-01-20T00:00:00.000Z",
+      "name": "Lazarus Group Malicious npm Mirror",
+      "description": "Malicious npm registry mirror used in supply chain attacks",
+      "pattern": "[domain-name:value = 'npm-registry-mirror.com']",
+      "pattern_type": "stix",
+      "valid_from": "2026-01-20T00:00:00.000Z",
+      "labels": ["malicious-activity"],
+      "threat_actor_names": ["Lazarus Group"],
+      "kill_chain_phases": [
+        {
+          "kill_chain_name": "mitre-attack",
+          "phase_name": "initial-access"
+        }
+      ],
+      "external_references": [
+        {
+          "source_name": "mitre-attack",
+          "external_id": "T1195.001",
+          "url": "https://attack.mitre.org/techniques/T1195/001/"
+        }
+      ]
+    }
+  ]
+}
